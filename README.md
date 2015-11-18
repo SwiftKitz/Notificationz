@@ -13,7 +13,7 @@ _Even though I shipped it with my app, I still need to invest the time to set th
 ## Highlights
 
 + __Keep Your Naming Conventions:__<br />
-This library allows gives you convenient access to `NSNotificationCenter`, but it's up to you to set it up the way you like!
+This library gives you convenient access to `NSNotificationCenter`, but it's up to you to set it up the way you like!
 
 + __Nothing to Hide:__<br />
 Not trying to hide `NSNotificationCenter` functionality. Just an attempt to provide a more convenient API
@@ -103,7 +103,7 @@ class Sample {
 
 Other programmers should be pleased with this consistency! Moreover, there is no need to worry handling notifications in some other function somewhere nor do cleanup in `deinit`. It just works:
 
-```
+```swift
 keyboardObserver = NC.observeUI(UIKeyboardWillShowNotification) { [unowned self] _ in
     // you can write your handler code here, maybe call another function
 }
