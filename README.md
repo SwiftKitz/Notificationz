@@ -96,8 +96,8 @@ With this framework, one can easily declare all their observers as properties:
 
 ```swift
 class Sample {
-    private keyboardObserver: Observer?
-    private reachabilityObserver: Observer?
+    private var keyboardObserver: Observer?
+    private var reachabilityObserver: Observer?
 }
 ```
 
