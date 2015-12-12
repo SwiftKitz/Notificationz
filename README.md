@@ -29,11 +29,11 @@ __Use your own naming convention to wrap NSNotificationCenter__
 
 ```swift
 let nsCenter = NSNotificationCenter.defaultCenter()
-let 📡 = NotificationCenter(nsCenter: nsCenter)
+let 📡 = NotificationCenterAdapter(notificationCenter: nsCenter)
 📡.post("💃")
 
 // my personal preference, define this in Globals.swift
-let NC = NotificationCenter(nsCenter: nsCenter)
+let NC = NotificationCenterAdapter(notificationCenter: nsCenter)
 // Now, you can use `NC` throughout the app
 ```
 

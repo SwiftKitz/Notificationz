@@ -9,8 +9,8 @@ import Notificationz
 //: Use your own naming convention to wrap NSNotificationCenter
 
 let nsCenter = NSNotificationCenter.defaultCenter()
-let NC = NotificationCenter(nsCenter: nsCenter)
-let 📡 = NotificationCenter(nsCenter: nsCenter)
+let NC = NotificationCenterAdapter(notificationCenter: nsCenter)
+let 📡 = NotificationCenterAdapter(notificationCenter: nsCenter)
 📡.post("💃")
 // Now, you can use NC throughout your app
 

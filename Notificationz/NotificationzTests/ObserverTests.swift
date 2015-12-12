@@ -13,7 +13,7 @@ import XCTest
 class ObserverTests: XCTestCase {
 
     let mock = NSNotificationCenter.Mock()
-    lazy var NC: NotificationCenter = NotificationCenter(nsCenter: self.mock)
+    lazy var NC: NotificationCenterAdapter = NotificationCenterAdapter(notificationCenter: self.mock)
     
     override func tearDown() {
         

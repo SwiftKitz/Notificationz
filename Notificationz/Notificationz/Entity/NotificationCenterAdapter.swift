@@ -1,5 +1,5 @@
 //
-//  NC.swift
+//  NotificationCenterAdapter.swift
 //  Notificationz
 //
 //  Created by Mazyad Alabduljaleel on 11/17/15.
@@ -9,14 +9,14 @@
 import Foundation
 
 
-public class NotificationCenter {
+public class NotificationCenterAdapter {
     
-    public let nsCenter: NSNotificationCenter
+    public let notificationCenter: NSNotificationCenter
     
     // MARK: - Init & Dealloc
     
-    public init(nsCenter: NSNotificationCenter) {
-        self.nsCenter = nsCenter
+    public init(notificationCenter: NSNotificationCenter) {
+        self.notificationCenter = notificationCenter
     }
     
     // MARK: - Public methods
@@ -27,7 +27,7 @@ public class NotificationCenter {
     
     public func add(observer: AnyObject, selector: Selector, name: String? = nil, object: AnyObject? = nil) {
         
-        nsCenter.addObserver(
+        notificationCenter.addObserver(
             observer,
             selector: selector,
             name: name,
@@ -36,15 +36,15 @@ public class NotificationCenter {
     }
     
     public func post(name: String, object: AnyObject? = nil, userInfo: [NSObject:AnyObject]? = nil) {
-        nsCenter.postNotificationName(name, object: object, userInfo: userInfo)
+        notificationCenter.postNotificationName(name, object: object, userInfo: userInfo)
     }
     
     public func post(notification: NSNotification) {
-        nsCenter.postNotification(notification)
+        notificationCenter.postNotification(notification)
     }
     
     public func remove(observer: AnyObject, name: String? = nil, object: AnyObject? = nil) {
-        nsCenter.removeObserver(observer, name: name, object: object)
+        notificationCenter.removeObserver(observer, name: name, object: object)
     }
 }
 
@@ -53,13 +53,13 @@ public class NotificationCenter {
     Observer support
 */
 
-extension NotificationCenter {
+extension NotificationCenterAdapter {
     
     private func _observe(names: [String?], object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
         
         let tokens = names.map {
             
-            self.nsCenter.addObserverForName(
+            self.notificationCenter.addObserverForName(
                 $0,
                 object: object,
                 queue: queue,

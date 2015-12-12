@@ -13,13 +13,13 @@ public class Observer {
     
     public typealias Block = (NSNotification?) -> ()
     
-    let notificationCenter: NotificationCenter
+    let notificationCenter: NotificationCenterAdapter
     let tokens: [NSObjectProtocol]
     let block: Block
     
     // MARK: - Init & Dealloc
     
-    init(notificationCenter: NotificationCenter, tokens: [NSObjectProtocol], block: Block) {
+    init(notificationCenter: NotificationCenterAdapter, tokens: [NSObjectProtocol], block: Block) {
         
         self.notificationCenter = notificationCenter
         self.tokens = tokens
@@ -27,7 +27,7 @@ public class Observer {
     }
     
     deinit {
-        tokens.forEach { self.notificationCenter.remove($0) }
+        tokens.forEach { notificationCenter.remove($0) }
     }
     
     /** You can execute the notification block anytime you like */

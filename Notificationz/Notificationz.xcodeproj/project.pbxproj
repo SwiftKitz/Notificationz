@@ -10,13 +10,13 @@
 		823742B21BFBAF52001143ED /* Notificationz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823742A71BFBAF52001143ED /* Notificationz.framework */; };
 		823742B71BFBAF52001143ED /* NotificationCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742B61BFBAF52001143ED /* NotificationCenterTests.swift */; };
 		823742C31BFBAF9D001143ED /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C21BFBAF9D001143ED /* Observer.swift */; };
-		823742C51BFBAFF3001143ED /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenter.swift */; };
+		823742C51BFBAFF3001143ED /* NotificationCenterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */; };
 		823742C91BFBBDA5001143ED /* ObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C81BFBBDA5001143ED /* ObserverTests.swift */; };
-		823742CC1BFBE605001143ED /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenter.swift */; };
+		823742CC1BFBE605001143ED /* NotificationCenterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */; };
 		823742CD1BFBE605001143ED /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C21BFBAF9D001143ED /* Observer.swift */; };
-		823742D81BFBE609001143ED /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenter.swift */; };
+		823742D81BFBE609001143ED /* NotificationCenterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */; };
 		823742D91BFBE609001143ED /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C21BFBAF9D001143ED /* Observer.swift */; };
-		823742E41BFBE60C001143ED /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenter.swift */; };
+		823742E41BFBE60C001143ED /* NotificationCenterAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */; };
 		823742E51BFBE60C001143ED /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823742C21BFBAF9D001143ED /* Observer.swift */; };
 		823742F71BFBE69F001143ED /* Notificationz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823742E01BFBE609001143ED /* Notificationz.framework */; };
 		823743061BFBE6B3001143ED /* Notificationz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823742D41BFBE605001143ED /* Notificationz.framework */; };
@@ -60,7 +60,7 @@
 		823742B61BFBAF52001143ED /* NotificationCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterTests.swift; sourceTree = "<group>"; };
 		823742B81BFBAF52001143ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		823742C21BFBAF9D001143ED /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
-		823742C41BFBAFF3001143ED /* NotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenterAdapter.swift; sourceTree = "<group>"; };
 		823742C81BFBBDA5001143ED /* ObserverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverTests.swift; sourceTree = "<group>"; };
 		823742D41BFBE605001143ED /* Notificationz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Notificationz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		823742E01BFBE609001143ED /* Notificationz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Notificationz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				823742C21BFBAF9D001143ED /* Observer.swift */,
-				823742C41BFBAFF3001143ED /* NotificationCenter.swift */,
+				823742C41BFBAFF3001143ED /* NotificationCenterAdapter.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -353,7 +353,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = kitz;
 				TargetAttributes = {
 					823742A61BFBAF52001143ED = {
@@ -450,7 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823742C51BFBAFF3001143ED /* NotificationCenter.swift in Sources */,
+				823742C51BFBAFF3001143ED /* NotificationCenterAdapter.swift in Sources */,
 				823742C31BFBAF9D001143ED /* Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823742CC1BFBE605001143ED /* NotificationCenter.swift in Sources */,
+				823742CC1BFBE605001143ED /* NotificationCenterAdapter.swift in Sources */,
 				823742CD1BFBE605001143ED /* Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,7 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823742D81BFBE609001143ED /* NotificationCenter.swift in Sources */,
+				823742D81BFBE609001143ED /* NotificationCenterAdapter.swift in Sources */,
 				823742D91BFBE609001143ED /* Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823742E41BFBE60C001143ED /* NotificationCenter.swift in Sources */,
+				823742E41BFBE60C001143ED /* NotificationCenterAdapter.swift in Sources */,
 				823742E51BFBE60C001143ED /* Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,6 +686,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -708,6 +709,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -877,6 +879,7 @@
 				823742BD1BFBAF52001143ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		823742BE1BFBAF52001143ED /* Build configuration list for PBXNativeTarget "NotificationzTests-ios" */ = {
 			isa = XCConfigurationList;
@@ -885,6 +888,7 @@
 				823742C01BFBAF52001143ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		823742D11BFBE605001143ED /* Build configuration list for PBXNativeTarget "Notificationz-osx" */ = {
 			isa = XCConfigurationList;
@@ -920,6 +924,7 @@
 				823742FC1BFBE69F001143ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		823743091BFBE6B3001143ED /* Build configuration list for PBXNativeTarget "NotificationzTests-osx" */ = {
 			isa = XCConfigurationList;
@@ -928,6 +933,7 @@
 				8237430B1BFBE6B3001143ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
