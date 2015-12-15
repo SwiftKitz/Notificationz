@@ -1,14 +1,19 @@
 
-# Notificationz :satellite:
+<h1 align="center">
+  Notificationz :satellite:
+<h6 align="center">
+  Helping you _own_ `NSNotificationCenter`
+</h6>
+</h1>
 
-![Version](https://img.shields.io/badge/version-prerelease-orange.svg)
-[![Travis CI](https://travis-ci.org/SwiftKitz/Notificationz.svg?branch=master)](https://travis-ci.org/SwiftKitz/Notificationz)
-![Swift](https://img.shields.io/badge/swift-2.1-blue.svg)
-![Platforms](https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos-lightgrey.svg)
-
-Helping you _own_ `NSNotificationCenter`!
-
-_Even though I shipped it with my app, I still need to invest the time to set this up, and finalize the API. Contributors welcome!_
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg" />
+  <a alt="Travis CI" href="https://travis-ci.org/SwiftKitz/Notificationz">
+    <img alt="Version" src="https://travis-ci.org/SwiftKitz/Notificationz.svg?branch=master" />
+  </a>
+  <img alt="Swift" src="https://img.shields.io/badge/swift-2.1-orange.svg" />
+  <img alt="Platforms" src="https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos-lightgrey.svg" />
+</p>
 
 ## Highlights
 
