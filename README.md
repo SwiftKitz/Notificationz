@@ -2,7 +2,7 @@
 <h1 align="center">
   Notificationz :satellite:
 <h6 align="center">
-  Helping you _own_ `NSNotificationCenter`
+  Helping you own NSNotificationCenter
 </h6>
 </h1>
 
