@@ -93,6 +93,31 @@ dummy = nil
 NC.post("Doesn't crash!")
 ```
 
+## Getting Started
+
+### Carthage
+
+[Carthage][carthage-link] is fully supported. Simply add the following line to your [Cartfile][cartfile-docs]:
+
+```ruby
+github "SwiftKitz/Notificationz" ~> 1.0.0
+```
+
+### Cocoapods
+
+[Cocoapods][cocoapods-link] is fully supported. Simply add the following line to your [Podfile][podfile-docs]:
+
+```ruby
+pod 'Notificationz'
+```
+
+### Submodule
+
+For manual installation, you can grab the source directly or through git submodules, then simply:
+
++ Drop the `Notificationz.xcodeproj` file as a subproject (make sure `Copy resources` is __not__ enabled)
++ Navigate to your root project settings. Under "Embedded Binaries", click the "+" button and select the `Notificationz.framework`
+
 ## Motivation
 
 After migrating to Swift, the `NSNotificationCenter` APIs really stood out in the code. Writing so much boiler plate all over the place just to register, handle, and cleanup notifications. Coming from C++, RAII seemed a pretty invaluable pattern to be applied here.
@@ -124,3 +149,9 @@ Mazyod ([@Mazyod](http://twitter.com/mazyod))
 ## License
 
 Notificationz is released under the MIT license. See LICENSE for details.
+
+
+[carthage-link]: https://github.com/Carthage/Carthage
+[cartfile-docs]: https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile
+[cocoapods-link]: https://cocoapods.org/
+[podfile-docs]: https://guides.cocoapods.org/syntax/podfile.html
