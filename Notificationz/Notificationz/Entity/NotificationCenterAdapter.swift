@@ -76,22 +76,26 @@ extension NotificationCenterAdapter {
     
     
     /** observe a single notification guaranteed to be delivered on the main queue */
+    @warn_unused_result
     public func observeUI(name: String? = nil, object: AnyObject? = nil, block: Observer.Block) -> Observer {
         return _observeUI([name], object: object, block: block)
     }
     
     /** observe a multiple notifications guaranteed to be delivered on the main queue */
+    @warn_unused_result
     public func observeUI(names: [String], object: AnyObject? = nil, block: Observer.Block) -> Observer {
         return _observeUI(names.map { .Some($0) }, object: object, block: block)
     }
     
 
     /** observe a single notification: NC.add(notificationName) { notif in  } */
+    @warn_unused_result
     public func observe(name: String? = nil, object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
         return _observe([name], object: object, queue: queue, block: block)
     }
     
     /** observe multiple notifications with a single block: NC.add([name0, name1]) { notif in  } */
+    @warn_unused_result
     public func observe(names: [String], object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
         return _observe(names.map { .Some($0) }, object: object, queue: queue, block: block)
     }
