@@ -12,7 +12,7 @@ import XCTest
 
 class ObserverTests: XCTestCase {
 
-    let mock = NSNotificationCenter.Mock()
+    let mock = NotificationCenter.Mock()
     lazy var NC: NotificationCenterAdapter = NotificationCenterAdapter(notificationCenter: self.mock)
     
     override func tearDown() {
@@ -28,7 +28,7 @@ class ObserverTests: XCTestCase {
         
         let tokens = [NSObject()]
         let block: Observer.Block = { _ in
-            triggerCount++
+            triggerCount += 1
         }
         
         let observer = Observer(notificationCenter: NC, tokens: tokens, block: block)
@@ -45,7 +45,7 @@ class ObserverTests: XCTestCase {
         var triggerCount = 0
         
         Observer(notificationCenter: NC, tokens: []) { _ in
-            triggerCount++
+            triggerCount += 1
         }.execute()
         
         XCTAssertEqual(triggerCount, 1)

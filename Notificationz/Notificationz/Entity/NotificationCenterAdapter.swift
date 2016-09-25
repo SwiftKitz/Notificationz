@@ -9,23 +9,23 @@
 import Foundation
 
 
-public class NotificationCenterAdapter {
+open class NotificationCenterAdapter {
     
-    public let notificationCenter: NSNotificationCenter
+    open let notificationCenter: NotificationCenter
     
     // MARK: - Init & Dealloc
     
-    public init(notificationCenter: NSNotificationCenter) {
+    public init(notificationCenter: NotificationCenter) {
         self.notificationCenter = notificationCenter
     }
     
     // MARK: - Public methods
     
-    public func add(observer: AnyObject, selector: Selector, names: [String], object: AnyObject? = nil) {
+    open func add(_ observer: AnyObject, selector: Selector, names: [Notification.Name], object: AnyObject? = nil) {
         names.forEach { self.add(observer, selector: selector, name: $0, object: object) }
     }
     
-    public func add(observer: AnyObject, selector: Selector, name: String? = nil, object: AnyObject? = nil) {
+    open func add(_ observer: AnyObject, selector: Selector, name: Notification.Name? = nil, object: AnyObject? = nil) {
         
         notificationCenter.addObserver(
             observer,
@@ -35,15 +35,15 @@ public class NotificationCenterAdapter {
         )
     }
     
-    public func post(name: String, object: AnyObject? = nil, userInfo: [NSObject:AnyObject]? = nil) {
-        notificationCenter.postNotificationName(name, object: object, userInfo: userInfo)
+    open func post(_ name: Notification.Name, object: AnyObject? = nil, userInfo: [AnyHashable: Any]? = nil) {
+        notificationCenter.post(name: name, object: object, userInfo: userInfo)
     }
     
-    public func post(notification: NSNotification) {
-        notificationCenter.postNotification(notification)
+    open func post(_ notification: Notification) {
+        notificationCenter.post(notification)
     }
     
-    public func remove(observer: AnyObject, name: String? = nil, object: AnyObject? = nil) {
+    open func remove(_ observer: AnyObject, name: NSNotification.Name? = nil, object: AnyObject? = nil) {
         notificationCenter.removeObserver(observer, name: name, object: object)
     }
 }
@@ -55,48 +55,48 @@ public class NotificationCenterAdapter {
 
 extension NotificationCenterAdapter {
     
-    private func _observe(names: [String?], object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
+    fileprivate func _observe(_ names: [Notification.Name?], object: AnyObject? = nil, queue: OperationQueue? = nil, block: @escaping Observer.Block) -> Observer {
         
         let tokens = names.map {
             
-            self.notificationCenter.addObserverForName(
-                $0,
+            self.notificationCenter.addObserver(
+                forName: $0,
                 object: object,
                 queue: queue,
-                usingBlock: block
+                using: block
             )
         }
         
         return Observer(notificationCenter: self, tokens: tokens, block: block)
     }
     
-    private func _observeUI(names: [String?], object: AnyObject? = nil, block: Observer.Block) -> Observer {
-        return _observe(names, object: object, queue: NSOperationQueue.mainQueue(), block: block)
+    fileprivate func _observeUI(_ names: [Notification.Name?], object: AnyObject? = nil, block: @escaping Observer.Block) -> Observer {
+        return _observe(names, object: object, queue: OperationQueue.main, block: block)
     }
     
     
     /** observe a single notification guaranteed to be delivered on the main queue */
-    @warn_unused_result
-    public func observeUI(name: String? = nil, object: AnyObject? = nil, block: Observer.Block) -> Observer {
+    
+    public func observeUI(_ name: Notification.Name? = nil, object: AnyObject? = nil, block: @escaping Observer.Block) -> Observer {
         return _observeUI([name], object: object, block: block)
     }
     
     /** observe a multiple notifications guaranteed to be delivered on the main queue */
-    @warn_unused_result
-    public func observeUI(names: [String], object: AnyObject? = nil, block: Observer.Block) -> Observer {
-        return _observeUI(names.map { .Some($0) }, object: object, block: block)
+    
+    public func observeUI(_ names: [Notification.Name], object: AnyObject? = nil, block: @escaping Observer.Block) -> Observer {
+        return _observeUI(names.map { .some($0) }, object: object, block: block)
     }
     
 
     /** observe a single notification: NC.add(notificationName) { notif in  } */
-    @warn_unused_result
-    public func observe(name: String? = nil, object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
+    
+    public func observe(_ name: Notification.Name? = nil, object: AnyObject? = nil, queue: OperationQueue? = nil, block: @escaping Observer.Block) -> Observer {
         return _observe([name], object: object, queue: queue, block: block)
     }
     
     /** observe multiple notifications with a single block: NC.add([name0, name1]) { notif in  } */
-    @warn_unused_result
-    public func observe(names: [String], object: AnyObject? = nil, queue: NSOperationQueue? = nil, block: Observer.Block) -> Observer {
-        return _observe(names.map { .Some($0) }, object: object, queue: queue, block: block)
+    
+    public func observe(_ names: [Notification.Name], object: AnyObject? = nil, queue: OperationQueue? = nil, block: @escaping Observer.Block) -> Observer {
+        return _observe(names.map { .some($0) }, object: object, queue: queue, block: block)
     }
 }

@@ -12,7 +12,12 @@ import XCTest
 
 class NotificationCenterTests: XCTestCase {
     
-    let mock = NSNotificationCenter.Mock()
+    class Test: NSObject {
+        func trigger() {}
+    }
+    
+    
+    let mock = NotificationCenter.Mock()
     lazy var NC: NotificationCenterAdapter = NotificationCenterAdapter(notificationCenter: self.mock)
     
     
@@ -24,9 +29,9 @@ class NotificationCenterTests: XCTestCase {
     
     func testAddSingle() {
         
-        let object = NSObject()
-        let selector = Selector("trigger:")
-        let notification = "testing"
+        let object = Test()
+        let selector = #selector(Test.trigger)
+        let notification = Notification.Name(rawValue: "testing")
         let anotherObject = NSObject()
         
         NC.add(object, selector: selector, name: notification, object: anotherObject)
@@ -41,14 +46,14 @@ class NotificationCenterTests: XCTestCase {
     
     func testAddMultiple() {
         
-        let object = NSObject()
-        let selector = Selector("trigger:")
-        let notifications = ["testing", "multiple", "keys"]
+        let object = Test()
+        let selector = #selector(Test.trigger)
+        let notifications = ["testing", "multiple", "keys"].map { Notification.Name(rawValue: $0) }
         let anotherObject = NSObject()
         
         NC.add(object, selector: selector, names: notifications, object: anotherObject)
         
-        notifications.reverse().forEach { name in
+        notifications.reversed().forEach { name in
             
             XCTAssert(mock.observers.popLast()! === object)
             XCTAssertEqual(mock.selectors.popLast()!, selector)
@@ -61,17 +66,16 @@ class NotificationCenterTests: XCTestCase {
     
     func testPostNotification() {
         
-        let notification = NSNotification(name: "blah", object: nil)
+        let notification = Notification(name: Notification.Name(rawValue: "blah"), object: nil)
         NC.post(notification)
         
-        XCTAssert(mock.notifications.popLast()! === notification)
-        
+        XCTAssertEqual(mock.notifications.popLast()!, notification)
         XCTAssertTrue(mock.isEmpty)
     }
     
     func testPostName() {
         
-        let name = "testing-this"
+        let name = Notification.Name(rawValue: "testing-this")
         let object = NSObject()
         let userInfo: [String:String] = ["key": "value"]
         
@@ -84,13 +88,13 @@ class NotificationCenterTests: XCTestCase {
     
     func testObserve() {
         
-        let name = "testing-this"
+        let name = Notification.Name(rawValue: "testing-this")
         let object = NSObject()
-        let queue = NSOperationQueue()
+        let queue = OperationQueue()
         
         var triggerCount = 0
         let block: Observer.Block = { _ in
-            triggerCount++
+            triggerCount += 1
         }
         
         let observer = NC.observe(name, object: object, queue: queue, block: block)
@@ -102,7 +106,7 @@ class NotificationCenterTests: XCTestCase {
         
         // call the block to test
         let newBlock = mock.blocks.popLast()!
-        newBlock(NSNotification(name: "", object: nil))
+        newBlock(Notification(name: Notification.Name(rawValue: ""), object: nil))
         XCTAssertEqual(triggerCount, 1)
         
         XCTAssertTrue(mock.isEmpty)
@@ -110,7 +114,7 @@ class NotificationCenterTests: XCTestCase {
     
     func testObserveUI() {
         
-        let name = "testing-ui"
+        let name = Notification.Name(rawValue: "testing-ui")
         let block: Observer.Block = { _ in }
         
         let observer = NC.observeUI(name, block: block)
@@ -118,7 +122,7 @@ class NotificationCenterTests: XCTestCase {
         
         XCTAssertEqual(mock.names.popLast()!, name)
         XCTAssertNil(mock.objects.popLast()!)
-        XCTAssert(mock.queues.popLast()! === NSOperationQueue.mainQueue())
+        XCTAssert(mock.queues.popLast()! === OperationQueue.main)
         XCTAssertNotNil(mock.blocks.popLast())
         
         XCTAssertTrue(mock.isEmpty)
@@ -128,12 +132,12 @@ class NotificationCenterTests: XCTestCase {
         
         let object = NSObject()
         let anotherObject = NSObject()
-        let notification = "testing"
+        let name = Notification.Name(rawValue: "testing")
         
-        NC.remove(object, name: notification, object: anotherObject)
+        NC.remove(object, name: name, object: anotherObject)
         
         XCTAssert(mock.observers.popLast()! === object)
-        XCTAssertEqual(mock.names.popLast()!, notification)
+        XCTAssertEqual(mock.names.popLast()!, name)
         XCTAssert(mock.objects.popLast()! === anotherObject)
         
         XCTAssertTrue(mock.isEmpty)

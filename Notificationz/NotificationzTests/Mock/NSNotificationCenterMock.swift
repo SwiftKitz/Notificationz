@@ -10,18 +10,18 @@ import Foundation
 @testable import Notificationz
 
 
-extension NSNotificationCenter {
+extension NotificationCenter {
 
-    class Mock: NSNotificationCenter {
+    class Mock: NotificationCenter {
         
-        var notifications = [NSNotification]()
-        var observers = [AnyObject]()
-        var selectors = [Selector]()
-        var names = [String?]()
-        var objects = [AnyObject?]()
-        var queues = [NSOperationQueue?]()
-        var blocks: [(NSNotification) -> ()] = []
-        var userInfos = [[NSObject:AnyObject]?]()
+        var notifications: [Notification] = []
+        var observers: [AnyObject] = []
+        var selectors: [Selector] = []
+        var names: [Notification.Name?] = []
+        var objects: [AnyObject?] = []
+        var queues: [OperationQueue?] = []
+        var blocks: [(Notification) -> ()] = []
+        var userInfos: [[AnyHashable: Any]?] = []
         
         
         var isEmpty: Bool {
@@ -50,40 +50,40 @@ extension NSNotificationCenter {
             userInfos.removeAll()
         }
         
-        override func addObserver(observer: AnyObject, selector aSelector: Selector, name aName: String?, object anObject: AnyObject?) {
+        override func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?) {
             
-            observers.append(observer)
+            observers.append(observer as AnyObject)
             selectors.append(aSelector)
             names.append(aName)
-            objects.append(anObject)
+            objects.append(anObject as AnyObject?)
         }
         
-        override func addObserverForName(name: String?, object obj: AnyObject?, queue: NSOperationQueue?, usingBlock block: (NSNotification) -> Void) -> NSObjectProtocol {
+        override func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol {
             
             names.append(name)
-            objects.append(obj)
+            objects.append(obj as AnyObject?)
             queues.append(queue)
             blocks.append(block)
             
             return NSObject()
         }
         
-        override func postNotification(notification: NSNotification) {
+        override func post(_ notification: Notification) {
             notifications.append(notification)
         }
         
-        override func postNotificationName(aName: String, object anObject: AnyObject?, userInfo aUserInfo: [NSObject : AnyObject]?) {
+        override func post(name aName: NSNotification.Name, object anObject: Any?, userInfo aUserInfo: [AnyHashable: Any]?) {
             
             names.append(aName)
-            objects.append(anObject)
+            objects.append(anObject as AnyObject?)
             userInfos.append(aUserInfo)
         }
         
-        override func removeObserver(observer: AnyObject, name aName: String?, object anObject: AnyObject?) {
+        override func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?) {
             
-            observers.append(observer)
+            observers.append(observer as AnyObject)
             names.append(aName)
-            objects.append(anObject)
+            objects.append(anObject as AnyObject?)
         }
     }
 }

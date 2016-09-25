@@ -9,9 +9,9 @@
 import Foundation
 
 
-public class Observer {
+open class Observer {
     
-    public typealias Block = (NSNotification?) -> ()
+    public typealias Block = (Notification?) -> ()
     
     let notificationCenter: NotificationCenterAdapter
     let tokens: [NSObjectProtocol]
@@ -19,7 +19,7 @@ public class Observer {
     
     // MARK: - Init & Dealloc
     
-    init(notificationCenter: NotificationCenterAdapter, tokens: [NSObjectProtocol], block: Block) {
+    init(notificationCenter: NotificationCenterAdapter, tokens: [NSObjectProtocol], block: @escaping Block) {
         
         self.notificationCenter = notificationCenter
         self.tokens = tokens
@@ -31,7 +31,7 @@ public class Observer {
     }
     
     /** You can execute the notification block anytime you like */
-    public func execute() -> Self {
+    @discardableResult open func execute() -> Self {
         
         block(nil)
         return self
