@@ -2,16 +2,16 @@
 <h1 align="center">
   Notificationz :satellite:
 <h6 align="center">
-  Helping you own NSNotificationCenter
+  Helping you own NotificationCenter
 </h6>
 </h1>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-blue.svg" />
   <a alt="Travis CI" href="https://travis-ci.org/SwiftKitz/Notificationz">
     <img alt="Version" src="https://travis-ci.org/SwiftKitz/Notificationz.svg?branch=master" />
   </a>
-  <img alt="Swift" src="https://img.shields.io/badge/swift-2.1-orange.svg" />
+  <img alt="Swift" src="https://img.shields.io/badge/swift-3.0-orange.svg" />
   <img alt="Platforms" src="https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos-lightgrey.svg" />
   <a alt="Carthage Compatible" href="https://github.com/SwiftKitz/Notificationz#carthage">
     <img alt="Carthage" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
@@ -21,22 +21,22 @@
 ## Highlights
 
 + __Keep Your Naming Conventions:__<br />
-This library gives you convenient access to `NSNotificationCenter`, but it's up to you to set it up the way you like!
+This library gives you convenient access to `NotificationCenter`, but it's up to you to set it up the way you like!
 
 + __Nothing to Hide:__<br />
-Not trying to hide `NSNotificationCenter` functionality. Just an attempt to provide a more convenient API
+Not trying to hide `NotificationCenter` functionality. Just an attempt to provide a more convenient API
   
 + __Full and Simple Testing:__<br />
-Testing this library was simple, since it only forwards calls to `NSNotificationCenter` for the most part. Mocking that object allowed tests to reach 100% coverage.
+Testing this library was simple, since it only forwards calls to `NotificationCenter` for the most part. Mocking that object allowed tests to reach 100% coverage.
 
 ## Features
 
 You can try them in the playground shipped with the framework!
 
-__Use your own naming convention to wrap NSNotificationCenter__
+__Use your own naming convention to wrap NotificationCenter__
 
 ```swift
-let nsCenter = NSNotificationCenter.defaultCenter()
+let nsCenter = NotificationCenter.defaultCenter()
 let 📡 = NotificationCenterAdapter(notificationCenter: nsCenter)
 📡.post("💃")
 
@@ -48,22 +48,26 @@ let NC = NotificationCenterAdapter(notificationCenter: nsCenter)
 __Four simple keywords to remember__
 
 ```swift
-NC.add(obj, selector: "call:")  // normal add observer
+NC.add(obj, selector: Selector("call:"))  // normal add observer
 NC.observe { notification in }  // observe using blocks
-NC.post("Ten-hut!")             // post a notification
+// it's recommended you define your notifications as enums
+let name = Notification.Name(rawValue: "Ten-hut!")
+NC.post(name)                   // post a notification
 NC.remove(obj)                  // remove from nsCenter
 ```
 
 __Transparent and convenient API__
 
 ```swift
-let keys = ["observe", "many", "keys"]
+let keys = ["observe", "many", "keys"].map {
+    Notification.Name(rawValue: $0)
+}
 NC.observe(keys) { _ in }       // observe on the same thread
 NC.observeUI(keys) { _ in }     // delivered to the main thread
 
-NC.post("string")
-NC.post("more-stuff", userInfo: ["info":5])
-NC.post(NSNotification(name: "notification", object: nil))
+NC.post(notificationName)
+NC.post(anotherName, userInfo: ["info":5])
+NC.post(Notification(name: differentName, object: nil))
 ```
 
 __RAII-based observers__
@@ -89,7 +93,7 @@ class Dummy {
 
 var dummy: Dummy? = Dummy()
 // trigger notification
-NC.post("call doSomething")
+NC.post(Notification.Name(rawValue: "call doSomething"))
 // cleanup is automatic
 dummy = nil
 // this won't trigger anything
@@ -98,12 +102,14 @@ NC.post("Doesn't crash!")
 
 ## Getting Started
 
+**IMPORTANT**: Kitz repos fully embrace Swift 3.0 and all the changes it brought. You should use `v1.0.0` if your still using Swift 2.x.
+
 ### Carthage
 
 [Carthage][carthage-link] is fully supported. Simply add the following line to your [Cartfile][cartfile-docs]:
 
 ```ruby
-github "SwiftKitz/Notificationz" ~> 1.0.0
+github "SwiftKitz/Notificationz"
 ```
 
 ### Cocoapods
@@ -123,7 +129,7 @@ For manual installation, you can grab the source directly or through git submodu
 
 ## Motivation
 
-After migrating to Swift, the `NSNotificationCenter` APIs really stood out in the code. Writing so much boiler plate all over the place just to register, handle, and cleanup notifications. Coming from C++, RAII seemed a pretty invaluable pattern to be applied here.
+After migrating to Swift, the `NotificationCenter` APIs really stood out in the code. Writing so much boiler plate all over the place just to register, handle, and cleanup notifications. Coming from C++, RAII seemed a pretty invaluable pattern to be applied here.
 
 With this framework, one can easily declare all their observers as properties:
 
