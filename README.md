@@ -36,7 +36,7 @@ You can try them in the playground shipped with the framework!
 __Use your own naming convention to wrap NotificationCenter__
 
 ```swift
-let nsCenter = NotificationCenter.defaultCenter()
+let nsCenter = NotificationCenter.default
 let 📡 = NotificationCenterAdapter(notificationCenter: nsCenter)
 📡.post("💃")
 
