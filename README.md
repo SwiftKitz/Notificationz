@@ -159,7 +159,6 @@ Mazyod ([@Mazyod](http://twitter.com/mazyod))
 
 Notificationz is released under the MIT license. See LICENSE for details.
 
-
 [carthage-link]: https://github.com/Carthage/Carthage
 [cartfile-docs]: https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile
 [cocoapods-link]: https://cocoapods.org/
