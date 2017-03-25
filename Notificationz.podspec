@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Notificationz"
-  s.version      = "2.0.0"
+  s.version      = "2.1.0"
   s.summary      = "Helping you own NSNotificationCenter!"
   s.description  = <<-DESC
                    Provides a customizable wrapper around NSNotificationCenter
@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
 
-  s.source       = { :git => "https://github.com/SwiftKitz/Notificationz.git", :tag => "v2.0.0" }
+  s.source       = { :git => "https://github.com/SwiftKitz/Notificationz.git", :tag => "v2.1.0" }
   s.source_files = "Notificationz/Notificationz/**/*.swift"
 end
