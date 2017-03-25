@@ -38,7 +38,7 @@ __Use your own naming convention to wrap NotificationCenter__
 ```swift
 let nsCenter = NotificationCenter.default
 let 📡 = NotificationCenterAdapter(notificationCenter: nsCenter)
-📡.post("💃")
+📡.post(.💃)
 
 // my personal preference, define this in Globals.swift
 let NC = NotificationCenterAdapter(notificationCenter: nsCenter)
@@ -48,26 +48,23 @@ let NC = NotificationCenterAdapter(notificationCenter: nsCenter)
 __Four simple keywords to remember__
 
 ```swift
-NC.add(obj, selector: Selector("call:"))  // normal add observer
-NC.observe { notification in }  // observe using blocks
-// it's recommended you define your notifications as enums
-let name = Notification.Name(rawValue: "Ten-hut!")
-NC.post(name)                   // post a notification
-NC.remove(obj)                  // remove from nsCenter
+let obj = Object()
+NC.add(obj, selector: #selector(Object.call))   // normal add observer
+NC.observe { notification in }                  // observe using blocks
+NC.post(.tenhut)                                // post a notification
+NC.remove(obj)                                  // remove from nsCenter
 ```
 
 __Transparent and convenient API__
 
 ```swift
-let keys = ["observe", "many", "keys"].map {
-    Notification.Name(rawValue: $0)
-}
+let keys = ["observe", "many", "keys"].map { Notification.Name($0) }
 NC.observe(keys) { _ in }       // observe on the same thread
 NC.observeUI(keys) { _ in }     // delivered to the main thread
 
-NC.post(notificationName)
-NC.post(anotherName, userInfo: ["info":5])
-NC.post(Notification(name: differentName, object: nil))
+NC.post(.test)
+NC.post(.test, userInfo: ["info":5])
+NC.post(Notification(name: .test, object: nil))
 ```
 
 __RAII-based observers__
@@ -92,12 +89,9 @@ class Dummy {
 }
 
 var dummy: Dummy? = Dummy()
-// trigger notification
-NC.post(Notification.Name(rawValue: "call doSomething"))
-// cleanup is automatic
-dummy = nil
-// this won't trigger anything
-NC.post("Doesn't crash!")
+NC.post(.test)  // calls doSomething
+dummy = nil     // clean up is automatic
+NC.post(.test)  // doesn't crash!
 ```
 
 ## Getting Started
