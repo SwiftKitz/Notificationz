@@ -15,10 +15,10 @@ extension NotificationCenter {
     class Mock: NotificationCenter {
         
         var notifications: [Notification] = []
-        var observers: [AnyObject] = []
+        var observers: [Any] = []
         var selectors: [Selector] = []
         var names: [Notification.Name?] = []
-        var objects: [AnyObject?] = []
+        var objects: [Any?] = []
         var queues: [OperationQueue?] = []
         var blocks: [(Notification) -> ()] = []
         var userInfos: [[AnyHashable: Any]?] = []
@@ -52,16 +52,16 @@ extension NotificationCenter {
         
         override func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?) {
             
-            observers.append(observer as AnyObject)
+            observers.append(observer)
             selectors.append(aSelector)
             names.append(aName)
-            objects.append(anObject as AnyObject?)
+            objects.append(anObject)
         }
         
         override func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol {
             
             names.append(name)
-            objects.append(obj as AnyObject?)
+            objects.append(obj)
             queues.append(queue)
             blocks.append(block)
             
@@ -75,15 +75,15 @@ extension NotificationCenter {
         override func post(name aName: NSNotification.Name, object anObject: Any?, userInfo aUserInfo: [AnyHashable: Any]?) {
             
             names.append(aName)
-            objects.append(anObject as AnyObject?)
+            objects.append(anObject)
             userInfos.append(aUserInfo)
         }
         
         override func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?) {
             
-            observers.append(observer as AnyObject)
+            observers.append(observer)
             names.append(aName)
-            objects.append(anObject as AnyObject?)
+            objects.append(anObject)
         }
     }
 }
