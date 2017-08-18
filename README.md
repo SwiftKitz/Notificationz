@@ -25,7 +25,7 @@ This library gives you convenient access to `NotificationCenter`, but it's up to
 
 + __Nothing to Hide:__<br />
 Not trying to hide `NotificationCenter` functionality. Just an attempt to provide a more convenient API
-  
+
 + __Full and Simple Testing:__<br />
 Testing this library was simple, since it only forwards calls to `NotificationCenter` for the most part. Mocking that object allowed tests to reach 100% coverage.
 
@@ -71,17 +71,17 @@ __RAII-based observers__
 
 ```swift
 class Dummy {
-    
+
     // declare the observer as optional
     var broadcastObserver: Observer?
-    
+
     init() {
         // assign it anywhere you like
         broadcastObserver = NC.observe { [unowned self] _ in
             self.doSomething()
         }.execute() // this is a neat bonus feature
     }
-    
+
     func doSomething() {
         // exectued twice, since we call "execute" manually
         print("it works!")
@@ -147,7 +147,7 @@ keyboardObserver = nil
 
 ## Author
 
-Mazyod ([@Mazyod](http://twitter.com/mazyod))
+Maz ([@Mazyod](http://twitter.com/mazyod))
 
 ## License
 
