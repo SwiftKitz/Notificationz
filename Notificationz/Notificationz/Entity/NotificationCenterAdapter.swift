@@ -9,9 +9,9 @@
 import Foundation
 
 
-open class NotificationCenterAdapter {
+public final class NotificationCenterAdapter {
     
-    open let notificationCenter: NotificationCenter
+    public let notificationCenter: NotificationCenter
     
     // MARK: - Init & Dealloc
     
@@ -21,11 +21,11 @@ open class NotificationCenterAdapter {
     
     // MARK: - Public methods
     
-    open func add(_ observer: Any, selector: Selector, names: [Notification.Name], object: Any? = nil) {
+    public func add(_ observer: Any, selector: Selector, names: [Notification.Name], object: Any? = nil) {
         names.forEach { self.add(observer, selector: selector, name: $0, object: object) }
     }
     
-    open func add(_ observer: Any, selector: Selector, name: Notification.Name? = nil, object: Any? = nil) {
+    public func add(_ observer: Any, selector: Selector, name: Notification.Name? = nil, object: Any? = nil) {
         
         notificationCenter.addObserver(
             observer,
@@ -35,15 +35,15 @@ open class NotificationCenterAdapter {
         )
     }
     
-    open func post(_ name: Notification.Name, object: Any? = nil, userInfo: [AnyHashable: Any]? = nil) {
+    public func post(_ name: Notification.Name, object: Any? = nil, userInfo: [AnyHashable: Any]? = nil) {
         notificationCenter.post(name: name, object: object, userInfo: userInfo)
     }
     
-    open func post(_ notification: Notification) {
+    public func post(_ notification: Notification) {
         notificationCenter.post(notification)
     }
     
-    open func remove(_ observer: Any, name: NSNotification.Name? = nil, object: Any? = nil) {
+    public func remove(_ observer: Any, name: NSNotification.Name? = nil, object: Any? = nil) {
         notificationCenter.removeObserver(observer, name: name, object: object)
     }
 }

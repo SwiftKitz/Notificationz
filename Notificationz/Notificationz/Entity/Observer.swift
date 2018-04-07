@@ -9,7 +9,7 @@
 import Foundation
 
 
-open class Observer {
+public final class Observer {
     
     public typealias Block = (Notification?) -> ()
     
@@ -31,7 +31,7 @@ open class Observer {
     }
     
     /** You can execute the notification block anytime you like */
-    @discardableResult open func execute() -> Self {
+    @discardableResult public func execute() -> Self {
         
         block(nil)
         return self
