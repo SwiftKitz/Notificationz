@@ -43,7 +43,7 @@ public final class NotificationCenterAdapter {
         notificationCenter.post(notification)
     }
     
-    public func remove(_ observer: Any, name: NSNotification.Name? = nil, object: Any? = nil) {
+    public func remove(_ observer: Any, name: Notification.Name? = nil, object: Any? = nil) {
         notificationCenter.removeObserver(observer, name: name, object: object)
     }
 }
@@ -55,7 +55,7 @@ public final class NotificationCenterAdapter {
 
 extension NotificationCenterAdapter {
     
-    fileprivate func _observe(_ names: [Notification.Name?], object: Any? = nil, queue: OperationQueue? = nil, block: @escaping Observer.Block) -> Observer {
+    private func _observe(_ names: [Notification.Name?], object: Any? = nil, queue: OperationQueue? = nil, block: @escaping Observer.Block) -> Observer {
         
         let tokens = names.map {
             
@@ -70,7 +70,7 @@ extension NotificationCenterAdapter {
         return Observer(notificationCenter: self, tokens: tokens, block: block)
     }
     
-    fileprivate func _observeUI(_ names: [Notification.Name?], object: Any? = nil, block: @escaping Observer.Block) -> Observer {
+    private func _observeUI(_ names: [Notification.Name?], object: Any? = nil, block: @escaping Observer.Block) -> Observer {
         return _observe(names, object: object, queue: OperationQueue.main, block: block)
     }
     
