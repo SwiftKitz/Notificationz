@@ -13,7 +13,7 @@ import XCTest
 class NotificationCenterTests: XCTestCase {
     
     class Test: NSObject {
-        func trigger() {}
+        @objc func trigger() {}
     }
     
     

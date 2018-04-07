@@ -59,8 +59,8 @@ class ObserverTests: XCTestCase {
         }
         
         XCTAssertNotNil(mock.observers.popLast())
-        XCTAssertNotNil(mock.names.popLast())
-        XCTAssertNotNil(mock.objects.popLast())
+        XCTAssertEqual(mock.names.popLast(), .some(.none))
+        XCTAssertNil(mock.objects.popLast()!)
         
         XCTAssertTrue(mock.isEmpty)
     }
