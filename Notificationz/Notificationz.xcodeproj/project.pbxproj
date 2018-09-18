@@ -358,17 +358,21 @@
 				TargetAttributes = {
 					823742A61BFBAF52001143ED = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					823742B01BFBAF52001143ED = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
+					};
+					823742CA1BFBE605001143ED = {
+						LastSwiftMigration = 1000;
 					};
 					823742F11BFBE69F001143ED = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
 					823743001BFBE6B3001143ED = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -672,6 +676,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -696,6 +701,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.kitz.Notificationz;
 				PRODUCT_NAME = Notificationz;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -710,6 +716,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.kitz.NotificationzTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -724,6 +731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.kitz.NotificationzTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -752,6 +760,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -778,6 +787,7 @@
 				PRODUCT_NAME = Notificationz;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -936,6 +946,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.kitz.NotificationzTests-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -954,6 +965,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.kitz.NotificationzTests-osx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
